@@ -18,6 +18,7 @@ package cmd
 import (
 	"fmt"
 	"os"
+
 	"github.com/spf13/cobra"
 
 	homedir "github.com/mitchellh/go-homedir"
@@ -29,13 +30,21 @@ var cfgFile string
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
 	Use:   "ringnetwork",
-	Short: "A brief description of your application",
-	Long: `A longer description that spans multiple lines and likely contains
-examples and usage of using your application. For example:
+	Short: "The Ring network - send files across the internet with end to end encryption",
+	Long: `NAME: 
+  The Ring network - send files across the internet with end to end encryption
 
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+DESCRIPTION:
+  Use the Ring network to create a download link for a file you want to share with one command.  Reserve your URL, define policy and start sharing.
+
+EXAMPLES:
+  ringnetwork transit -filename=myfile.pdf => random.rn.com
+  ringnetwork transit -filename=myfile.pdf -gate=sol => sol.rn.com
+  ringnetwork transit -filename=myfile.pdf -gate=sol -auth=my_ip_policy => sol.rn.com, accessible only by ip address 3.41.23.128
+	
+VERSION: 
+  0.0.1
+	`,
 	// Uncomment the following line if your bare application
 	// has an action associated with it:
 	// Run: func(cmd *cobra.Command, args []string) { },
