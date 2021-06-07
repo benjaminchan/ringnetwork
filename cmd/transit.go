@@ -25,14 +25,13 @@ import (
 var transitCmd = &cobra.Command{
 	Use:   "transit",
 	Short: "Create download link for sending a file",
-	Long: `A longer description that spans multiple lines and likely contains examples
-and usage of using your command. For example:
-
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+	Long:  `transit: Setup gate to send file across the internet.  Configure with file, gate, and policy.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("transit called")
+		if len(args) < 1 {
+			fmt.Println("transit requested without args")
+		} else {
+			fmt.Println("transit requested with args")
+		}
 	},
 }
 
@@ -43,8 +42,10 @@ func init() {
 
 	// Cobra supports Persistent Flags which will work for this command
 	// and all subcommands, e.g.:
-	// transitCmd.PersistentFlags().String("foo", "", "A help for foo")
-
+	filename := transitCmd.PersistentFlags().String("filename", "", "path to file")
+	gate := transitCmd.PersistentFlags().String("gate", "", "name your transit")
+	auth := transitCmd.PersistentFlags().String("auth", "", "enforce policy on transit")
+	fmt.Println(*filename)
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:
 	// transitCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
